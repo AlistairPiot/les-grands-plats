@@ -11,8 +11,8 @@ export default function ErrorPage() {
 
     return (
         <div id="error-page">
-            <h1>Oops!</h1>
-            <p>Sorry, an unexpected error has occurred. ^^</p>
+            <h1>Page d'erreur</h1>
+            <p>Si vous voulez vous amusez, ce n'est pas le bonne endroit. ^^</p>
             <p>
                 <i>{error.statusText || error.message}</i>
             </p>

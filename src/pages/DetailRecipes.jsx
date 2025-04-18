@@ -1,14 +1,19 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
 import { recipes } from "./../data/recipes";
-import ErrorPage from "./../pages/ErrorPage";
 
 function DetailRecipes() {
     const { id } = useParams();
     const post = recipes.find((item) => item.id === parseInt(id));
 
     if (!post) {
-        return <ErrorPage />;
+        return (
+            <>
+                <Link to={`/`}>Revenir sur l'accueil</Link>
+                <p>Mauvaise id dans l'URL.</p>
+                <p>Ce n'est pas une recette.</p>
+            </>
+        );
     }
 
     return (
@@ -21,6 +26,11 @@ function DetailRecipes() {
                     <p>
                         {item.ingredient} : {item.quantity}
                     </p>
+                </li>
+            ))}
+            {post.ustensils.map((item, index) => (
+                <li key={index}>
+                    <p>Ustensiles : {item}</p>
                 </li>
             ))}
             <p>Temps : {post.time} min</p>
