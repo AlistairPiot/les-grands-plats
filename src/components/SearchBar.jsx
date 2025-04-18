@@ -22,7 +22,6 @@ function SearchBar({ searchText, setSearchText }) {
                     </div>
                 </form>
             </div>
-            <p>Tu recherches : {searchText}</p>
         </div>
     );
 }
