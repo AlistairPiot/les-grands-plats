@@ -1,23 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import FilterBox from "../components/FilterBox";
 import Header from "../components/Header";
 import RecipesList from "../components/RecipesList";
 import Tag from "../components/Tag";
+import { recipes } from "../data/recipes";
 import SearchBar from "./../components/SearchBar";
 
 function Home() {
+    const [searchText, onChangeText] = useState("");
+
+    const filteredRecipes = recipes.filter((recipe) => {
+        return recipe.name.toLowerCase().includes(searchText.toLowerCase());
+    });
+
     return (
         <div className="div">
             <div className="mx-auto">
                 <Header />
                 <main id="main">
                     <div className="container">
-                        <SearchBar />
+                        {/* Passer searchText et setSearchText comme propos à SearchBar */}
+                        <SearchBar
+                            searchText={searchText}
+                            setSearchText={onChangeText}
+                        />
                         <Tag />
                         <div className="btn-group mb-4">
                             <FilterBox />
                         </div>
-                        <RecipesList />
+                        <RecipesList recipesPlats={filteredRecipes} />
                     </div>
                 </main>
                 <script
