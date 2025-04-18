@@ -1,17 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import { recipes } from "./../data/recipes";
 
 function FilterBox() {
+    const [showUstensils, setShowUstensils] = useState(false);
+
+    const toggleUstensils = () => {
+        setShowUstensils(!showUstensils);
+    };
+
+    const allUstensils = [
+        ...new Set([].concat(...recipes.map((recipe) => recipe.ustensils))),
+    ];
+
     return (
         <>
-            <h2>Ustensils</h2>
-            {recipes.map((recipe) => {
-                <div key={recipe.id}>
-                    {recipe.ustensils.map((ustensil, index) => {
-                        return <p key={index}>{ustensil}</p>;
-                    })}
-                </div>;
-            })}
+            <div className="dropdown mb-3 me-md-3">
+                <div className="vertical-center">
+                    <button onClick={toggleUstensils}>
+                        {showUstensils ? "Cacher les ustensils" : "Ustensils"}
+                    </button>
+                    {showUstensils && (
+                        <div>
+                            {allUstensils.map((ustensil, index) => {
+                                return <p key={index}>{ustensil}</p>;
+                            })}
+                        </div>
+                    )}
+                </div>
+            </div>
         </>
     );
 }
