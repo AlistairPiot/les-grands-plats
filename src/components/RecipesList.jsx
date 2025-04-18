@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import pasta from "./../assets/img/pasta.jpg";
 import watchTime from "./../assets/img/watch-time.svg";
 
@@ -9,6 +10,7 @@ function RecipesList({ recipesPlats }) {
         >
             {recipesPlats.map((recipe) => (
                 <div className="col" key={recipe.id}>
+                    <Link to={`/plat/${recipe.id}`}>Détail</Link>
                     <div className="card h-100">
                         <div className="card-img-top">
                             <img src={pasta} alt="image d'un plat de pâte" />
